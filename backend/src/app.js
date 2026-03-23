@@ -34,10 +34,7 @@ const corsOptions = {
   optionsSuccessStatus: 204
 };
 
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
+app.use(cors(corsOptions));
 
 app.use(
   "/api",
