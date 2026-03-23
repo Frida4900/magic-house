@@ -1,4 +1,4 @@
-# 青柚电影
+# Frida的电影小站
 
 一个中文电影评分网站示例项目，前端使用 React + Vite，后端使用 Express，数据层使用 PostgreSQL + Prisma，并通过 TMDB API 自动同步“正在上映”和“热门电影”。
 
