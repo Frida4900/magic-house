@@ -74,7 +74,7 @@
 1. 在 Vercel 导入 `frontend/` 目录。
 2. Build Command 设为 `npm run build`。
 3. Output Directory 设为 `dist`。
-4. 配置环境变量 `VITE_API_BASE_URL=https://your-backend-domain`。
+4. 配置环境变量 `VITE_API_URL=https://your-backend-domain/api`。
 
 ### 后端部署到 Railway 或 Render
 
