@@ -1,8 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
-
-if (!API_BASE_URL) {
-  throw new Error("缺少 VITE_API_URL，请在前端环境变量中配置后端地址。");
-}
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 async function request(path, options = {}) {
   const headers = new Headers(options.headers || {});
@@ -33,9 +29,9 @@ async function request(path, options = {}) {
 
 export async function fetchHomeData() {
   const [nowPlaying, popular, recommended] = await Promise.all([
-    request("/movies/now-playing?limit=12"),
-    request("/movies/popular?limit=12"),
-    request("/movies/recommended?limit=8")
+    request("/api/movies/now-playing?limit=12"),
+    request("/api/movies/popular?limit=12"),
+    request("/api/movies/recommended?limit=8")
   ]);
 
   return {
@@ -46,26 +42,26 @@ export async function fetchHomeData() {
 }
 
 export async function fetchMovieDetail(movieId, token) {
-  const response = await request(`/movies/${movieId}`, { token });
+  const response = await request(`/api/movies/${movieId}`, { token });
   return response.movie;
 }
 
 export async function registerUser(payload) {
-  return request("/auth/register", {
+  return request("/api/auth/register", {
     method: "POST",
     body: payload
   });
 }
 
 export async function loginUser(payload) {
-  return request("/auth/login", {
+  return request("/api/auth/login", {
     method: "POST",
     body: payload
   });
 }
 
 export async function submitRating(movieId, score, token) {
-  return request(`/movies/${movieId}/ratings`, {
+  return request(`/api/movies/${movieId}/ratings`, {
     method: "POST",
     token,
     body: { score }
@@ -73,7 +69,7 @@ export async function submitRating(movieId, score, token) {
 }
 
 export async function submitComment(movieId, content, token) {
-  return request(`/movies/${movieId}/comments`, {
+  return request(`/api/movies/${movieId}/comments`, {
     method: "POST",
     token,
     body: { content }
@@ -81,3 +77,4 @@ export async function submitComment(movieId, content, token) {
 }
 
 export { API_BASE_URL };
+
