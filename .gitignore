@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+.next/
+.env
+.env.local
+.pgdata/
+.pglog/
+.DS_Store
+coverage/
+backend/generated/
+backend/prisma/dev.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
