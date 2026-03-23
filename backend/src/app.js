@@ -8,24 +8,36 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-app.set("trust proxy", 1);
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const allowlist = env.clientOrigin
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+const allowedOrigins = [
+  "http://localhost:3000"
+];
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin || allowlist.includes(origin)) {
-        return callback(null, true);
-      }
+function isAllowedOrigin(origin) {
+  return (
+    allowedOrigins.includes(origin) ||
+    /^https:\/\/.*\.vercel\.app$/.test(origin)
+  );
+}
 
-      return callback(new Error("当前来源不在允许的跨域列表中。"));
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (!origin || isDevelopment || isAllowedOrigin(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
     }
-  })
-);
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204
+};
+
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 
 app.use(
   "/api",
@@ -49,4 +61,3 @@ app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;
-

@@ -89,4 +89,4 @@
    npm run sync:movies
    ```
 
-5. 将前端域名写入 `CLIENT_ORIGIN`，例如 `https://your-frontend.vercel.app`。
+5. 将前端域名写入 `CLIENT_ORIGIN`，多个来源可用英文逗号分隔，例如 `http://localhost:3000,https://your-frontend.vercel.app`。
