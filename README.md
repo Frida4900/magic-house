@@ -28,6 +28,8 @@
    copy frontend\.env.example frontend\.env
    ```
 
+   将 `backend/.env` 中的 `CLIENT_ORIGIN` 改成当前前端地址，将 `frontend/.env` 中的 `VITE_API_URL` 改成当前后端地址。
+
 3. 在根目录安装依赖：
 
    ```bash
@@ -53,7 +55,7 @@
    npm run dev
    ```
 
-   前端默认 `http://localhost:3000`，后端默认 `http://localhost:4000`。
+   前端开发环境请在 `frontend/.env` 中设置 `VITE_API_URL` 指向后端地址。
 
 ## 测试步骤
 
@@ -74,7 +76,7 @@
 1. 在 Vercel 导入 `frontend/` 目录。
 2. Build Command 设为 `npm run build`。
 3. Output Directory 设为 `dist`。
-4. 配置环境变量 `VITE_API_BASE_URL=https://your-backend-domain`。
+4. 配置环境变量 `VITE_API_URL=https://your-backend-domain`。
 
 ### 后端部署到 Railway 或 Render
 
