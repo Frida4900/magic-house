@@ -11,7 +11,8 @@ const app = express();
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const allowedOrigins = [
-  "http://localhost:3000"
+  "http://localhost:3000",
+  "https://magic-house.pages.dev"
 ];
 
 function isAllowedOrigin(origin) {
